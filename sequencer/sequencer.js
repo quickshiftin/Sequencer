@@ -183,10 +183,18 @@ class S{
     size(w, h) {
         const r = this.config.hiDPI ? window.devicePixelRatio : 1;
         const c = this.ctx.canvas;
-        c.width = w * r;
-        c.height = h * r;
-        c.style.width = w + 'px';
-        c.style.height = h + 'px';
+        
+        if (this.config.scaleMode == 'explicit') {
+            c.width = this.config.width;
+            c.height = this.config.height;
+            c.style.width = this.config.width + 'px';
+            c.style.height = this.config.height + 'px';
+        } else {
+            c.width = w * r;
+            c.height = h * r;
+            c.style.width = w + 'px';
+            c.style.height = h + 'px';
+        }
         this.drawImage();
     }
 }
