@@ -34,6 +34,8 @@ class S{
             to               : '',
             step             : 1,            // increment: to load only even images use 2, etc
             scaleMode        : 'cover',      // as in CSS3, can be: auto, cover, contain
+            width            : '',           // Used if scaleMode is 'explicit'
+            height           : '',           // Used if scaleMode is 'explicit'
             direction        : 'x',          // mouse direction, can be x, -x, y, -y, applies only if playMode is 'drag' or 'hover'
             playMode         : 'drag',       // none, drag, hover, auto    TODO: remove auto, add loop, pong, once
             loop             : 'loop',       // loop, pong or none         TODO: remove
@@ -160,6 +162,9 @@ class S{
                 ih = ch;
                 iw = ih * ia;
             }
+        } else if (this.config.scaleMode == 'explicit') {
+            iw = this.config.width;
+            ih = this.config.height;
         } else { //this.config.scaleMode == 'auto'
             iw = img.width;
             ih = img.height;
